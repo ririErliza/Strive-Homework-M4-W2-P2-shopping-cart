@@ -18,6 +18,13 @@
       background-color: rgb(34, 26, 26);
       color: white;
     }
+
+    .card-img-top{
+        height:400px;
+        width: auto;
+        object-fit: cover;
+    }
+
     
 </style>
 
@@ -46,7 +53,7 @@
         <p class="lead">This is a simple bookstore, we have some decent collections here, from romance to sci-fi.</p>
         <hr class="my-4">
         <p class="ml-3">Pick some books from our store or search below</p>
-        <div class="col-md-3 input-group md-form form-sm form-2">
+        <div class="col-md-3 input-group md-form form-sm form-2 ">
             <input id="text-input" class="form-control my-0 py-1 red-border w-75" type="text" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
                 <button class="input-group-text btn btn-outline-white btn-md" onclick="searchBooks()"><i class="bi bi-search text-grey" aria-hidden="true"></i></button>
@@ -62,11 +69,11 @@
            
                 <!-- divs below this cardsWrapper will be from JS code -->
 
-                <div class="col-6 col-md-3 px-1 mb-2 mb-md-0">
+                <!-- <div class="col-6 col-md-3 px-1 mb-2 mb-md-0">
                     <div class="card">
                             <img src="..." class="card-img-top" alt="HTML">
                             <div class="card-body">
-                                <h6 class="card-title text-truncate"> HTML Full Course - Build A Website Tutorial</h6>
+                                <h6 class="card-title text-truncate"> Title long title </h6>
                                 
 
                                 <div>
@@ -85,7 +92,7 @@
                             </div>
 
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
