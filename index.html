@@ -34,17 +34,69 @@
     <nav class="navbar navbar-dark sticky-top bg-secondary">
 
         <div class="col-md-3">
-               <button class="btn btn-outline-white text-white"><i class="bi bi-cart-fill text-white"></i> Shopping Cart</button> 
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-white text-white" data-toggle="modal" data-target="#exampleModal">
+                <i class="bi bi-cart-fill text-white"></i> Shopping Cart
+            </button>
         </div>
         
         
         <a class="navbar-brand col-md-3 col-lg-2" href="#"><i class="bi bi-book mr-2"></i>myBooks</a>
-
-          
-         
-        
-          
+   
     </nav>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Shopping cart</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">#</th>
+                    <td>Product</td>
+                    <td> </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+            <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Total</th>
+                    <th scope="col">$ 56</th>
+                    
+                  </tr>
+                </thead>
+               
+                </tbody>
+              </table>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
 <main role="main">    
 
@@ -61,6 +113,7 @@
         </div>
     </div>
 
+    
 
 
     <div class="album py-5">

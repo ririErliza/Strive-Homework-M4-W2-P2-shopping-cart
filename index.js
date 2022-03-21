@@ -61,14 +61,14 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
 
         <div class="col-6 col-md-3 mb-5 hideThis">
                     <div class="card h-100">
-                            <img src="${book.img}" class="card-img-top" alt="HTML">
+                            <img src="${book.img}" class="book-img card-img-top" alt="HTML">
                             <div class="card-body">
                                 <h6 class="card-title text-truncate"> ${book.title} </h6>
                                 <p class="card-text">${book.category}</p>
                                 
 
                                 <div>
-                                    <span class="font-weight-bold">$ ${book.price}</span>  
+                                    <span class="font-weight-bold price">$ ${book.price}</span>  
                                 </div>
                             </div>
 
@@ -77,7 +77,7 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
                                     Hide
                                 </button>
                     
-                                <button class="mr-3 btn btn-sm">
+                                <button class="mr-3 btn btn-sm" onclick="addToCart()">
                                 <i class="bi bi-plus-square-fill"></i>
                                 </button>
                             </div>
