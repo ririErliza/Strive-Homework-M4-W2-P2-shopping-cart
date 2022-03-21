@@ -103,8 +103,53 @@ function hideFunction() {
     }
   }
 
+  /* search function */
+
+  const searchFunction = (event) =>{
+    const url = "https://striveschool-api.herokuapp.com/books"
+
+    const query =event.target.value
+    console.log(query)
+
+    fetch(url)
+      .then(response => response.json())
+      .then(booksArray => {
+        cardsWrapper.innerHTML = booksArray.filter(book =>
+          book.title.toLowerCase().includes(query.toLowerCase() ) )
+          .map(book=> 
+            `<div class="col-6 col-md-3 mb-5 hideThis">
+                    <div class="card h-100">
+                            <img src="${book.img}" class="book-img card-img-top" alt="HTML">
+                            <div class="card-body">
+                                <h6 class="card-title text-truncate"> ${book.title} </h6>
+                                <p class="card-text">${book.category}</p>
+                                
+
+                                <div>
+                                    <span class="font-weight-bold price">$ ${book.price}</span>  
+                                </div>
+                            </div>
+
+                            <div class="card-footer d-flex flex-row justify-content-between bg-light">
+                                <button class="mr-3 btn btn-sm border border-secondary text-muted" onclick="hideFunction()">
+                                    Hide
+                                </button>
+                    
+                                <button class="mr-3 btn btn-sm" onclick="addToCart()">
+                                <i class="bi bi-plus-square-fill"></i>
+                                </button>
+                            </div>
+
+                    </div>
+                </div>`).join("")
+
+  })
+}
 
 
-          window.onload = () => {
-            loadBooks();
-          }
+
+
+window.onload = () => {
+  loadBooks();
+  document.querySelector("input").addEventListener("change", searchFunction);
+}
