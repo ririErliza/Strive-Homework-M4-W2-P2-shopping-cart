@@ -1,50 +1,6 @@
 /* Load books function */
 
-// const loadBooks = () => {
-//     const url = "https://striveschool-api.herokuapp.com/books"
-
-// fetch (url)
-// .then(response => response.json() )
-// .then(data => {
-//   console.log(data)
-    
-//     let cardsWrapper = document.querySelector ("#cardsWrapper")
-
- 
-//     cardsWrapper.innerHTML =""
-//     data.forEach(element => {
-//         const content=
-//         `<div class="col-md-4 hideThis">
-//         <div class="card mb-4 shadow-sm">
-//                 <img src=${element.img} class="card-image img-fluid" />
-//                 <div class="card-body">
-//                   <p class="card-text">
-//                     This is an image.
-//                   </p>
-//                   <div class="d-flex justify-content-between align-items-center">
-//                     <div class="btn-group">
-//                       <button type="button" class="btn btn-sm btn-outline-secondary">
-//                         View
-//                       </button>
-//                       <button type="button" class="btn btn-sm btn-outline-secondary " onclick="hideFunction()">
-//                         Hide
-//                       </button>
-//                     </div>
-//                     <small class="text-muted">${element.title}</small>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>`
-
-//             cardsWrapper.innerHTML += content
-//     })
-// })
-// .catch(error => {
-//     console.log(error)
-// })
-// }
-
-
+let books = [];
 const cardsWrapper = document.querySelector("#cardsWrapper")
 
     const loadBooks = () => {
@@ -54,7 +10,8 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
       fetch(url)
       .then(response => response.json())
       .then(booksArray => {
-        console.log(booksArray)
+        books = booksArray;
+        console.log(books)
         // DOM MANIPULATION WITH MAP
 
         cardsWrapper.innerHTML = booksArray.map(book => `
@@ -77,7 +34,7 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
                                     Hide
                                 </button>
                     
-                                <button class="mr-3 btn btn-sm" onclick="addToCart()">
+                                <button class="mr-3 btn btn-sm" onclick="addToCart('${String(book.asin)}',this)">
                                 <i class="bi bi-plus-square-fill"></i>
                                 </button>
                             </div>
@@ -92,6 +49,47 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
         })
     }
 
+    /* Add book to cart function */
+    let shoppingCartList=[];
+    function addToCart(asin, element){
+      const book = books.find ((book) => book.asin == asin);
+      shoppingCartList.push(book);
+      console.log(shoppingCartList);
+
+      insideShoppingCart();
+
+      element.closest(".card").classList.add("clickedBook")
+
+    }
+
+    const shoppingCart = document.querySelector("#shoppingCart")
+    function insideShoppingCart(){
+      shoppingCart.innerHTML = "";
+
+      shoppingCartList.forEach((book)=>{
+        shoppingCart.innerHTML += `
+        <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                  <th scope="row"> <button class="mr-3 btn btn-sm border border-secondary text-muted" onclick="deleteItem('${String(book.asin)}')">
+                  delete
+                  </button></th>
+                    
+                  
+                    <th> ${book.title}</th>
+                    <th><img src=${book.img} width="30" height="40" > </th>
+
+                 
+                    
+                  </tr>
+                </tbody>
+              </table>`
+              ;
+      })
+    }
+
+
+
     /* hide function */
 
 function hideFunction() {
@@ -102,6 +100,17 @@ function hideFunction() {
       x.style.display = "none";
     }
   }
+
+      /* delete function for book inside shopping cart*/
+
+function deleteItem(asin){
+  const index =shoppingCartList.findIndex((book)=>book.asin === asin);
+
+  if (index !== -1){
+    shoppingCartList.splice(index,1)
+  }
+  insideShoppingCart();
+}
 
   /* search function */
 

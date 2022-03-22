@@ -25,6 +25,11 @@
         object-fit: cover;
     }
 
+    .clickedBook{
+      border : 10px solid rgba(8, 192, 238, 0.52);
+      
+    }
+
     
 </style>
 
@@ -56,9 +61,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="shoppingCart">
           
-            <table class="table table-borderless">
+          <!-- this code below from JS-->
+            <!-- <table class="table table-borderless">
                 <tbody>
                   <tr>
                     <th scope="row">#</th>
@@ -67,26 +73,10 @@
                     
                   </tr>
                 </tbody>
-              </table>
-
-
-
+              </table> -->
 
         </div>
-        <div class="modal-footer">
-            <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    
-                    <th scope="col">Total</th>
-                    <th scope="col">$ 56</th>
-                    
-                  </tr>
-                </thead>
-               
-                </tbody>
-              </table>
-          </div>
+   
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">checkout</button>
