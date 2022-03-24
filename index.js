@@ -34,8 +34,8 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
                                     Hide
                                 </button>
                     
-                                <button class="mr-3 btn btn-sm" onclick="addToCart('${String(book.asin)}',this)">
-                                <i class="bi bi-plus-square-fill"></i>
+                                <button class="mr-3 btn btn-sm buttonPlus" onclick="addToCart('${String(book.asin)}',this)">
+                                <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
 
@@ -52,13 +52,13 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
     /* Add book to cart function */
     let shoppingCartList=[];
     function addToCart(asin, element){
-      const book = books.find ((book) => book.asin == asin);
+      const book = books.find ((book) => book.asin === asin);
       shoppingCartList.push(book);
       console.log(shoppingCartList);
 
       insideShoppingCart();
 
-      element.closest(".card").classList.add("clickedBook")
+      element.closest(".buttonPlus").classList.add("clickedBook")
 
     }
 
@@ -71,24 +71,32 @@ const cardsWrapper = document.querySelector("#cardsWrapper")
         <table class="table table-borderless">
                 <tbody>
                   <tr>
-                  <th scope="row"> <button class="mr-3 btn btn-sm border border-secondary text-muted" onclick="deleteItem('${String(book.asin)}')">
-                  delete
-                  </button></th>
-                    
-                  
-                    <th> ${book.title}</th>
-                    <th><img src=${book.img} width="30" height="40" > </th>
-
-                 
-                    
+                    <th scope="row"> <button class="mr-3 btn btn-sm border border-secondary text-muted" onclick="deleteItem('${String(book.asin)}')">
+                    delete
+                    </button></th>
+  
+                    <td> ${book.title}</td>
+                    <td><img src=${book.img} width="30" height="40" > </td>
                   </tr>
+
+
                 </tbody>
               </table>`
               ;
       })
+      /* total price in shopping cart list */
+      shoppingCart.innerHTML += `<h3>Your total : $ ${ Math.round(
+        shoppingCartList.reduce((total, item) =>{
+          return total + item.price;
+        },0) *100)/100
+      } </h3>`;
     }
 
+     
 
+
+
+  
 
     /* hide function */
 
@@ -101,7 +109,7 @@ function hideFunction() {
     }
   }
 
-      /* delete function for book inside shopping cart*/
+    /* delete function for book inside shopping cart*/
 
 function deleteItem(asin){
   const index =shoppingCartList.findIndex((book)=>book.asin === asin);
